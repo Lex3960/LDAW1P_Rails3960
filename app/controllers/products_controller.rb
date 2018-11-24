@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
-    render json: {productos: @products}
+    render json: {products: @products}
   end
 
   # GET /products/1
@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      render json: @product, status: :created, location: @product
+      render json: {product: @product}, status: :created, location: @product
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      render json: @product
+      render json: {product: @product}
     else
       render json: @product.errors, status: :unprocessable_entity
     end
